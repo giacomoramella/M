@@ -3,345 +3,324 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maria</title>
+<title>Maria ♥</title>
+<meta name="theme-color" content="#FFF9F4">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="p038.jpg" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#FBF7F2;
-    --bg-warm:#FFF4E6;
-    --bg-soft:#FFEDF2;
-    --testo:#2A2030;
-    --testo-soft:#6B5E78;
-    --accent:#E08FB4;
+    --bg:#FFF9F4;
+    --card:#FFFFFF;
+    --ink:#2E2126;
+    --ink-soft:#8A737C;
+    --rosa:#E4547C;
+    --rosa-soft:#F9E3EA;
+    --oro:#E8A15D;
+    --ombra:0 10px 30px -12px rgba(46,33,38,.18);
+    --r:18px;
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{
-    font-family:'Inter', system-ui, -apple-system, sans-serif;
-    background:var(--bg);
-    color:var(--testo);
-    overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg); color:var(--ink);
+    overflow-x:hidden; -webkit-font-smoothing:antialiased;
+  }
+  img,video{display:block;max-width:100%}
+  ::selection{background:var(--rosa-soft)}
+
+  /* barra progresso */
+  #bar{position:fixed;top:0;left:0;height:3px;width:100%;z-index:60;
+    background:linear-gradient(90deg,var(--rosa),var(--oro));
+    transform:scaleX(0);transform-origin:0 50%;will-change:transform}
+
+  /* ------ HERO ------ */
+  .hero{position:relative;height:100svh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);will-change:transform}
+  .hero .velo{position:absolute;inset:0;background:
+    radial-gradient(80% 60% at 50% 50%, rgba(30,15,20,.42) 0%, rgba(30,15,20,.12) 55%, rgba(30,15,20,0) 100%),
+    linear-gradient(180deg, rgba(30,15,20,.25) 0%, rgba(30,15,20,0) 30%, rgba(30,15,20,0) 62%, rgba(30,15,20,.55) 100%)}
+  .hero-in{position:relative;z-index:2;text-align:center;color:#fff;padding:0 1.5rem}
+  .hero .cuorehero{font-size:clamp(1.6rem,3vw,2.4rem);display:inline-block;
+    animation:battito 1.6s ease-in-out infinite;filter:drop-shadow(0 4px 14px rgba(0,0,0,.35))}
+  @keyframes battito{0%,100%{transform:scale(1)}12%{transform:scale(1.22)}24%{transform:scale(1)}36%{transform:scale(1.14)}48%{transform:scale(1)}}
+  .hero h1{font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:clamp(4.6rem,16vw,12rem);line-height:.95;letter-spacing:-.03em;
+    text-shadow:0 6px 40px rgba(0,0,0,.35);margin:.5rem 0 1rem}
+  .hero .anni{font-weight:500;letter-spacing:.35em;font-size:clamp(.75rem,1.4vw,.95rem);
+    text-transform:uppercase;opacity:.9;padding-left:.35em}
+  .giu{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);z-index:2;
+    color:#fff;opacity:.85;font-size:1.3rem;animation:giubob 2.2s ease-in-out infinite}
+  @keyframes giubob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,10px)}}
+  .cuori-vol{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+  .cuori-vol span{position:absolute;bottom:-6vh;font-size:1.1rem;opacity:0;animation:vola linear infinite}
+  @keyframes vola{
+    0%{opacity:0;transform:translateY(0) scale(.7) rotate(-8deg)}
+    12%{opacity:.75}
+    100%{opacity:0;transform:translateY(-108vh) scale(1.25) rotate(10deg)}
   }
 
-  /* HERO */
-  .hero{
-    position:relative;
-    height:100vh;
-    width:100%;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .hero-img{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transform: scale(1.05);
-    will-change: transform;
-  }
-  .hero-overlay{
-    position:absolute;
-    inset:0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.35) 100%);
-  }
-  .hero-content{
-    position:relative;
-    z-index:2;
-    text-align:center;
-    color:white;
-    padding: 0 2rem;
-  }
-  .hero .pre{
-    font-family:'Inter', sans-serif;
-    font-weight:300;
-    font-size:clamp(0.9rem, 1.5vw, 1.1rem);
-    letter-spacing:0.3em;
-    text-transform:uppercase;
-    opacity:0.85;
-    margin-bottom:1.5rem;
-  }
-  .hero h1{
-    font-family:'Fraunces', serif;
-    font-weight:400;
-    font-style:italic;
-    font-size:clamp(5rem, 16vw, 13rem);
-    line-height:0.95;
-    letter-spacing:-0.03em;
-    text-shadow: 0 4px 30px rgba(0,0,0,0.3);
-  }
-  .hero .sotto{
-    margin-top:1.5rem;
-    font-family:'Fraunces', serif;
-    font-style:italic;
-    font-weight:300;
-    font-size:clamp(1.1rem, 2vw, 1.5rem);
-    opacity:0.95;
-    letter-spacing:0.02em;
-  }
-  .scroll-arrow{
-    position:absolute;
-    bottom:2.5rem;
-    left:50%;
-    transform: translateX(-50%);
-    color:white;
-    font-size:1.5rem;
-    opacity:0.7;
-    animation: bob 2s ease-in-out infinite;
-    z-index:3;
-  }
-  @keyframes bob{
-    0%,100%{transform:translateX(-50%) translateY(0);}
-    50%{transform:translateX(-50%) translateY(10px);}
+  /* ------ GRID ------ */
+  main{max-width:1180px;margin:0 auto;padding:0 clamp(.8rem,3vw,2rem)}
+  .anno{display:flex;align-items:center;gap:1rem;margin:clamp(3rem,7vw,5rem) 0 1.6rem}
+  .anno::before,.anno::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,#E9D5DC);}
+  .anno::after{background:linear-gradient(90deg,#E9D5DC,transparent)}
+  .anno b{font-family:'Fraunces',serif;font-style:italic;font-weight:500;
+    font-size:clamp(1.5rem,3.4vw,2.2rem);color:var(--rosa);white-space:nowrap}
+  .anno small{font-size:1rem;transform:translateY(2px)}
+
+  .griglia{columns:3;column-gap:clamp(.8rem,1.6vw,1.3rem)}
+  @media(max-width:860px){.griglia{columns:2}}
+  .cella{break-inside:avoid;margin-bottom:clamp(.8rem,1.6vw,1.3rem);position:relative;
+    border-radius:var(--r);overflow:hidden;box-shadow:var(--ombra);background:var(--card);
+    opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1);
+    cursor:pointer}
+  .cella.vis{opacity:1;transform:none}
+  .cella img,.cella video{width:100%;height:auto;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+  @media(hover:hover){.cella:hover img,.cella:hover video{transform:scale(1.04)}}
+  .cella .tag{position:absolute;top:.65rem;right:.65rem;background:rgba(255,255,255,.85);
+    backdrop-filter:blur(6px);border-radius:999px;padding:.28rem .6rem;font-size:.72rem;
+    font-weight:600;color:var(--rosa);display:flex;align-items:center;gap:.3rem}
+  .cuore-pop{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(0);
+    font-size:5rem;pointer-events:none;filter:drop-shadow(0 6px 18px rgba(0,0,0,.25))}
+  .cuore-pop.vai{animation:pop .9s cubic-bezier(.16,1,.3,1) forwards}
+  @keyframes pop{
+    0%{transform:translate(-50%,-50%) scale(0);opacity:0}
+    30%{transform:translate(-50%,-50%) scale(1.25);opacity:1}
+    60%{transform:translate(-50%,-50%) scale(1)}
+    100%{transform:translate(-50%,-80%) scale(1);opacity:0}
   }
 
-  /* STORY SECTIONS */
-  .story{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    padding: 6rem 1.5rem;
-    position:relative;
-  }
+  /* ------ MOMENTI ------ */
+  .momento{position:relative;margin:clamp(3rem,7vw,5.5rem) calc(50% - 50vw);height:min(92svh,860px);overflow:hidden}
+  .momento img{width:100%;height:118%;object-fit:cover;will-change:transform}
+  .momento .velo{position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,15,20,.12),rgba(30,15,20,0) 35%,rgba(30,15,20,0) 65%,rgba(30,15,20,.3))}
+  .momento .cuore-m{position:absolute;bottom:1.6rem;left:50%;transform:translateX(-50%);
+    font-size:2rem;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));animation:battito 1.8s ease-in-out infinite}
 
-  .story-photo{
-    width:min(90vw, 620px);
-    aspect-ratio: 3/4;
-    object-fit:cover;
-    border-radius: 18px;
-    box-shadow: 0 30px 60px -20px rgba(42, 32, 48, 0.25);
-    opacity:0;
-    transform: translateY(80px) scale(0.92);
-    transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform, opacity;
-  }
-  .story-photo.landscape{
-    aspect-ratio: 4/3;
-    width:min(92vw, 780px);
-  }
-  .story-photo.centered-top{
-    object-position: center 25%;
-  }
-  .story.visible .story-photo{
-    opacity:1;
-    transform: translateY(0) scale(1);
-  }
+  /* ------ FINALE ------ */
+  .finale{display:flex;flex-direction:column;align-items:center;padding:clamp(4rem,9vw,7rem) 1.2rem 3rem;text-align:center}
+  .finale .cornice{width:min(88vw,560px);border-radius:24px;overflow:hidden;box-shadow:0 40px 90px -30px rgba(46,33,38,.4);
+    opacity:0;transform:scale(.9);transition:opacity 1.4s cubic-bezier(.16,1,.3,1),transform 1.6s cubic-bezier(.16,1,.3,1)}
+  .finale.vis .cornice{opacity:1;transform:none}
+  .finale h2{font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:clamp(3.6rem,13vw,9rem);line-height:1;letter-spacing:-.03em;margin-top:2.6rem;
+    background:linear-gradient(115deg,var(--rosa) 10%,var(--oro) 55%,#E4547C 100%);background-size:200% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    opacity:0;transform:translateY(36px);transition:opacity 1.2s ease .35s,transform 1.2s cubic-bezier(.16,1,.3,1) .35s}
+  .finale.vis h2{opacity:1;transform:none;animation:brilla 8s ease-in-out 2s infinite}
+  @keyframes brilla{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+  .finale .cuoricini{margin-top:1.4rem;font-size:1.3rem;letter-spacing:.6rem;opacity:0;transition:opacity 1.2s ease .8s}
+  .finale.vis .cuoricini{opacity:1}
 
-  .story-text{
-    font-family:'Fraunces', serif;
-    font-style:italic;
-    font-weight:400;
-    font-size:clamp(1.8rem, 4.5vw, 3.4rem);
-    line-height:1.15;
-    letter-spacing:-0.015em;
-    color:var(--testo);
-    text-align:center;
-    max-width:18ch;
-    margin-top: 3rem;
-    opacity:0;
-    transform: translateY(40px);
-    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
-  }
-  .story.visible .story-text{
-    opacity:1;
-    transform: translateY(0);
-  }
+  footer{padding:2.5rem 1.5rem 4rem;text-align:center;color:var(--ink-soft);
+    font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1rem,2vw,1.25rem)}
+  footer .nome{color:var(--rosa);font-weight:500}
 
-  .story-text .accent{
-    color: var(--accent);
-    font-weight:500;
-  }
+  /* lightbox */
+  #lb{position:fixed;inset:0;z-index:70;background:rgba(24,12,17,.92);display:none;
+    align-items:center;justify-content:center;padding:2rem}
+  #lb.on{display:flex}
+  #lb img,#lb video{max-width:min(94vw,900px);max-height:88svh;width:auto;height:auto;border-radius:14px;
+    box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  #lb .x{position:absolute;top:1.1rem;right:1.4rem;color:#fff;font-size:2rem;cursor:pointer;
+    opacity:.8;line-height:1;background:none;border:none;font-family:inherit}
 
-  /* alternating backgrounds */
-  .story:nth-child(odd){ background: var(--bg-warm); }
-  .story:nth-child(even){ background: var(--bg-soft); }
-  .story:nth-child(3n){ background: var(--bg); }
-
-  /* FINALE - bacio */
-  .finale{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    padding: 6rem 1.5rem;
-    background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg-warm) 100%);
-  }
-  .finale-photo{
-    width:min(92vw, 720px);
-    aspect-ratio: 3/4;
-    object-fit:cover;
-    border-radius: 20px;
-    box-shadow: 0 40px 80px -25px rgba(42, 32, 48, 0.35);
-    opacity:0;
-    transform: scale(0.88);
-    transition: all 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .finale.visible .finale-photo{
-    opacity:1;
-    transform: scale(1);
-  }
-  .finale-text{
-    margin-top: 4rem;
-    font-family:'Fraunces', serif;
-    font-style:italic;
-    font-weight:400;
-    font-size:clamp(4rem, 14vw, 11rem);
-    line-height:0.95;
-    letter-spacing:-0.03em;
-    background: linear-gradient(135deg, #E08FB4 0%, #F2B752 50%, #BDE0FE 100%);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    text-align:center;
-    opacity:0;
-    transform: translateY(50px);
-    transition: all 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
-  }
-  .finale.visible .finale-text{
-    opacity:1;
-    transform: translateY(0);
-  }
-
-  /* FOOTER */
-  footer{
-    padding: 4rem 2rem 5rem;
-    text-align:center;
-    background: var(--bg-warm);
-  }
-  footer .firma{
-    font-family:'Fraunces', serif;
-    font-style:italic;
-    font-weight:400;
-    font-size:clamp(1.1rem, 2vw, 1.4rem);
-    color: var(--testo-soft);
-    letter-spacing:0.05em;
-  }
-  footer .firma .nome{
-    color: var(--accent);
-    font-weight:500;
-  }
-
-  @media (max-width: 640px){
-    .story-text{ max-width: 14ch; }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    .cella{opacity:1;transform:none}
   }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
+<div id="bar"></div>
+
 <section class="hero">
-  <img class="hero-img" id="heroImg" src="maria%20snow.JPG" alt="Maria sulla neve">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <p class="pre">per la mia</p>
+  <img src="p038.jpg" alt="" fetchpriority="high">
+  <div class="velo"></div>
+  <div class="cuori-vol" id="cuoriVol"></div>
+  <div class="hero-in">
+    <span class="cuorehero">❤️</span>
     <h1>Maria</h1>
-    <p class="sotto">un piccolo viaggio fatto di noi</p>
+    <p class="anni">2019 — per sempre</p>
   </div>
-  <div class="scroll-arrow">↓</div>
+  <div class="giu">↓</div>
 </section>
 
-<!-- STORY SECTIONS -->
-<section class="story">
-  <img class="story-photo" src="438_6854.JPG" alt="">
-  <p class="story-text">l'inizio del mio <span class="accent">regalo</span> preferito</p>
+<main id="book"></main>
+
+<section class="finale" id="fine">
+  <div class="cornice"><img src="p503.jpg" alt="" loading="lazy"></div>
+  <h2>ti amo</h2>
+  <p class="cuoricini">❤️ 🤍 ❤️</p>
 </section>
 
-<section class="story">
-  <img class="story-photo" src="1d7d6e45-d69c-4cd5-8004-3ec77c99ea3a.jpg" alt="">
-  <p class="story-text">le mie <span class="accent">labbra</span> preferite</p>
-</section>
+<footer>il tuo <span class="nome">Charmy Boy</span> · g</footer>
 
-<section class="story">
-  <img class="story-photo" src="98969733-b2e7-4604-9154-03f424dd0f46.jpg" alt="">
-  <p class="story-text">una foto <span class="accent">carina carina</span> non la abbiamo ancora ma questa si avvicina da..</p>
-</section>
-
-<section class="story">
-  <img class="story-photo" src="IMG_5781.jpeg" alt="">
-  <p class="story-text">sei la mia persona <span class="accent">preferita</span> da fotografare anche se poi a te non sempre piacciono</p>
-</section>
-
-<section class="story">
-  <img class="story-photo" src="IMG_5785.jpeg" alt="">
-  <p class="story-text">altra foto <span class="accent">carina</span> dai, le 3 ore più lunghe con te senza fare sss</p>
-</section>
-
-<section class="story">
-  <img class="story-photo centered-top" src="IMG_5788.jpeg" alt="">
-  <p class="story-text">chissà se prima o poi <span class="accent">lo farò</span> davvero..</p>
-</section>
-
-<section class="story">
-  <img class="story-photo" src="IMG_5809.PNG" alt="">
-  <p class="story-text">anche se non si direbbe ma <span class="accent">amo i tuoi baci</span> in macchina, anche quando rischio di schiantarmi</p>
-</section>
-
-<section class="story">
-  <img class="story-photo" src="IMG_5857.jpeg" alt="">
-  <p class="story-text">piccolo <span class="accent">collage</span> da ubri</p>
-</section>
-
-<section class="story">
-  <img class="story-photo" src="IMG_6217.jpeg" alt="">
-  <p class="story-text">sei <span class="accent">bellissima</span></p>
-</section>
-
-<section class="story">
-  <img class="story-photo" src="IMG_6336.jpeg" alt="">
-  <p class="story-text">vorrei tornare qua per farti una <span class="accent">proposta</span> più bella</p>
-</section>
-
-<section class="story">
-  <img class="story-photo" src="IMG_6566.jpeg" alt="">
-  <p class="story-text">ogni <span class="accent">fiore</span> che vedo penso a te</p>
-</section>
-
-<!-- FINALE -->
-<section class="finale">
-  <img class="finale-photo" src="bacio.jpg" alt="">
-  <p class="finale-text">ti amo</p>
-</section>
-
-<footer>
-  <p class="firma">il tuo <span class="nome">Charmy Boy</span> · g</p>
-</footer>
+<div id="lb"><button class="x" aria-label="chiudi">×</button><div id="lbBox"></div></div>
 
 <script>
-  // SCROLL REVEAL
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
+(function(){
+  var ridotto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- contenuto ---------- */
+  var FLOW = [
+    {y:"2019", i:["p209","p031"]},
+    {y:"2025", i:["p063","p118"]},
+    {y:"2026", i:["p140","v_gondola","p149","p150","v_neve","p155","p182","p504","p021","p183","p184","p188","p200","p202","p207"]},
+    {m:"p029"},
+    {i:["p012","p045","p015","p492","p216","p218","p219","p051","p033","p223","p122","p130","p227","p237"]},
+    {y:"estate 2026", i:["p242","p065","p066","p052","p080","p094","p248","p253","p259","p269","p270"]},
+    {m:"p291"},
+    {i:["p311","p110","p314","v_festa","p335","p119","p056","p356","p367","v_ballo","p402","p400","p383","p397","p498","p011"]},
+    {m:"p404"},
+    {i:["p008","p041","p046","p007","p034","p003","p413","p002","p428","p455","p036","p466","p471","v_cabana","p477","p480","p009"]},
+    {m:"p497"},
+    {m:"p482", pos:"50% 18%"}
+  ];
+
+  var main = document.getElementById('book');
+  var frag = document.createDocumentFragment();
+
+  function cella(name){
+    var d = document.createElement('div');
+    d.className = 'cella';
+    if(name.indexOf('v_') === 0){
+      var AR = {v_ballo:'540/960', v_cabana:'540/960', v_festa:'540/720', v_gondola:'540/960', v_neve:'960/540'};
+      d.innerHTML = '<video src="'+name+'.mp4" poster="'+name+'_poster.jpg" style="aspect-ratio:'+(AR[name]||'3/4')+';object-fit:cover" muted loop playsinline preload="metadata"></video><span class="tag">▶ ❤️</span>';
+    } else {
+      d.innerHTML = '<img src="'+name+'.jpg" alt="" loading="lazy">';
+    }
+    var pop = document.createElement('span');
+    pop.className = 'cuore-pop'; pop.textContent = '❤️';
+    d.appendChild(pop);
+    return d;
+  }
+
+  FLOW.forEach(function(b){
+    if(b.m){
+      var m = document.createElement('div');
+      m.className = 'momento';
+      m.innerHTML = '<img src="'+b.m+'.jpg" alt="" loading="lazy"'+(b.pos?' style="object-position:'+b.pos+'"':'')+'><div class="velo"></div><span class="cuore-m">❤️</span>';
+      frag.appendChild(m);
+      return;
+    }
+    if(b.y){
+      var a = document.createElement('div');
+      a.className = 'anno';
+      a.innerHTML = '<b>'+b.y+'</b><small>❤️</small>';
+      frag.appendChild(a);
+    }
+    var g = document.createElement('div');
+    g.className = 'griglia';
+    (b.i||[]).forEach(function(n){ g.appendChild(cella(n)); });
+    frag.appendChild(g);
+  });
+  main.appendChild(frag);
+
+  /* ---------- reveal ---------- */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('vis');
+        var v = e.target.querySelector && e.target.querySelector('video');
+        if(v){ v.play().catch(function(){}); }
+        if(!e.target.classList.contains('momento')) io.unobserve(e.target);
+      } else {
+        var v2 = e.target.querySelector && e.target.querySelector('video');
+        if(v2) v2.pause();
       }
     });
-  }, { threshold: 0.15 });
+  },{threshold:.12,rootMargin:'0px 0px -4% 0px'});
+  document.querySelectorAll('.cella,.momento').forEach(function(el){ io.observe(el); });
 
-  document.querySelectorAll('.story, .finale').forEach(el => observer.observe(el));
+  var ioFin = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('vis'); });
+  },{threshold:.25});
+  ioFin.observe(document.getElementById('fine'));
 
-  // HERO PARALLAX
-  const heroImg = document.getElementById('heroImg');
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if(!ticking){
-      requestAnimationFrame(() => {
-        const y = window.pageYOffset;
-        if(y < window.innerHeight){
-          heroImg.style.transform = 'scale(1.05) translateY(' + (y * 0.4) + 'px)';
-        }
-        ticking = false;
-      });
-      ticking = true;
+  /* ---------- cuoricini che volano nella hero ---------- */
+  if(!ridotto){
+    var vol = document.getElementById('cuoriVol');
+    var EMO = ['❤️','🤍','💛','🩷'];
+    for(var i=0;i<14;i++){
+      var s = document.createElement('span');
+      s.textContent = EMO[i%EMO.length];
+      s.style.left = (4+Math.random()*92)+'%';
+      s.style.fontSize = (0.8+Math.random()*1.1)+'rem';
+      s.style.animationDuration = (7+Math.random()*8)+'s';
+      s.style.animationDelay = (Math.random()*9)+'s';
+      vol.appendChild(s);
     }
-  });
-</script>
+  }
 
+  /* ---------- doppio tap = cuore ---------- */
+  var ultimo = 0;
+  main.addEventListener('click', function(ev){
+    var c = ev.target.closest('.cella');
+    if(!c) return;
+    var ora = Date.now();
+    if(ora - ultimo < 350){
+      var p = c.querySelector('.cuore-pop');
+      p.classList.remove('vai'); void p.offsetWidth; p.classList.add('vai');
+      ultimo = 0;
+      return;
+    }
+    ultimo = ora;
+    setTimeout(function(){
+      if(ultimo && Date.now()-ultimo >= 350){ apriLB(c); ultimo = 0; }
+    }, 360);
+  });
+
+  /* ---------- lightbox ---------- */
+  var lb = document.getElementById('lb'), box = document.getElementById('lbBox');
+  function apriLB(c){
+    var v = c.querySelector('video'), im = c.querySelector('img');
+    box.innerHTML = '';
+    if(v){
+      var nv = document.createElement('video');
+      nv.src = v.getAttribute('src'); nv.muted = true; nv.loop = true; nv.autoplay = true;
+      nv.playsInline = true; nv.setAttribute('playsinline','');
+      box.appendChild(nv);
+    } else if(im){
+      var ni = document.createElement('img'); ni.src = im.src; box.appendChild(ni);
+    }
+    lb.classList.add('on');
+    document.body.style.overflow = 'hidden';
+  }
+  function chiudi(){ lb.classList.remove('on'); box.innerHTML=''; document.body.style.overflow=''; }
+  lb.addEventListener('click', function(e){ if(e.target === lb || e.target.classList.contains('x')) chiudi(); });
+  addEventListener('keydown', function(e){ if(e.key === 'Escape') chiudi(); });
+
+  /* ---------- scroll: barra + parallax ---------- */
+  var bar = document.getElementById('bar');
+  var heroImg = document.querySelector('.hero img');
+  var momenti = Array.prototype.slice.call(document.querySelectorAll('.momento img'));
+  var coda = false;
+  function tick(){
+    var y = pageYOffset, vh = innerHeight;
+    var tot = document.documentElement.scrollHeight - vh;
+    bar.style.transform = 'scaleX(' + (tot>0 ? Math.min(y/tot,1) : 0) + ')';
+    if(!ridotto){
+      if(y < vh) heroImg.style.transform = 'translate3d(0,'+(y*.35)+'px,0) scale(1.06)';
+      momenti.forEach(function(im){
+        var r = im.parentElement.getBoundingClientRect();
+        if(r.bottom < 0 || r.top > vh) return;
+        var c = (r.top + r.height/2 - vh/2)/vh;
+        im.style.transform = 'translate3d(0,'+(c*-7)+'%,0)';
+      });
+    }
+    coda = false;
+  }
+  addEventListener('scroll', function(){ if(!coda){ coda=true; requestAnimationFrame(tick); } }, {passive:true});
+  tick();
+
+  // "momento" observer già in io: i video partono da soli quando visibili
+})();
+</script>
 </body>
 </html>
