@@ -102,14 +102,31 @@
     100%{transform:translate(-50%,-80%) scale(1);opacity:0}
   }
 
-  /* ------ FRASI ------ */
-  .frase{max-width:26ch;margin:clamp(3.5rem,8vw,6rem) auto;text-align:center;
-    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
-    font-size:clamp(1.5rem,3.6vw,2.6rem);line-height:1.25;letter-spacing:-.01em;color:var(--ink);
+  /* ------ FRASI: carte segrete ------ */
+  .frase{width:min(78vw,380px);aspect-ratio:1;margin:clamp(3.5rem,8vw,6rem) auto;
+    cursor:pointer;perspective:1200px;
+    filter:drop-shadow(0 16px 26px rgba(46,33,38,.25));
     opacity:0;transform:translateY(30px);
     transition:opacity 1.1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1)}
   .frase.vis{opacity:1;transform:none}
-  .frase::after{content:"❤️";display:block;font-size:1.1rem;margin-top:1.2rem}
+  .frase .giro{position:relative;width:100%;height:100%;
+    transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,1.2,.35,1)}
+  .frase.aperta .giro{transform:rotateY(180deg)}
+  .frase .faccia{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    clip-path:url(#clipCuore);overflow:hidden}
+  .frase .faccia img{width:100%;height:100%;object-fit:cover}
+  .frase .faccia .velo-f{position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,15,20,.05),rgba(30,15,20,.45) 78%)}
+  .frase .clicca{position:absolute;left:50%;bottom:22%;transform:translateX(-50%);
+    color:#fff;font-weight:600;font-size:.95rem;letter-spacing:.18em;text-transform:uppercase;
+    padding-left:.18em;text-shadow:0 2px 10px rgba(0,0,0,.5);
+    animation:battito 1.8s ease-in-out infinite}
+  .frase .retro{transform:rotateY(180deg);
+    background:linear-gradient(135deg,var(--rosa) 0%,#EF7D9C 55%,var(--oro) 100%);
+    display:flex;align-items:center;justify-content:center;text-align:center}
+  .frase .retro p{width:62%;margin-top:-6%;color:#fff;
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:clamp(1.05rem,2.6vw,1.5rem);line-height:1.3;
+    text-shadow:0 2px 12px rgba(0,0,0,.18)}
 
   .ultima{max-width:30ch;margin:clamp(2.5rem,6vw,4rem) auto 0;text-align:center;
     font-family:'Fraunces',serif;font-style:italic;font-weight:400;
@@ -117,6 +134,13 @@
     opacity:0;transform:translateY(26px);
     transition:opacity 1.2s cubic-bezier(.16,1,.3,1) .2s,transform 1.2s cubic-bezier(.16,1,.3,1) .2s}
   .ultima.vis{opacity:1;transform:none}
+
+  .chiusa{margin:1.8rem auto 0;text-align:center;
+    font-family:'Fraunces',serif;font-style:italic;font-weight:500;
+    font-size:clamp(1.5rem,3.6vw,2.4rem);color:var(--rosa);
+    opacity:0;transform:translateY(24px);
+    transition:opacity 1.2s cubic-bezier(.16,1,.3,1) .5s,transform 1.2s cubic-bezier(.16,1,.3,1) .5s}
+  .finale.vis .chiusa{opacity:1;transform:none}
 
   /* ------ MOMENTI ------ */
   .momento{position:relative;margin:clamp(3rem,7vw,5.5rem) calc(50% - 50vw);height:min(92svh,860px);overflow:hidden}
@@ -201,6 +225,7 @@
   <h2>ti amo</h2>
   <p class="cuoricini">❤️ 🤍 ❤️</p>
   <p class="ultima">Se dovessi rifare tutto da capo, rifarei tutte le stesse strade pur di ritrovarti.</p>
+  <p class="chiusa">Con te ci rifarei tutto. ❤️</p>
 </section>
 
 <footer>il tuo <span class="nome">Charmy Boy</span> · g</footer>
@@ -217,18 +242,18 @@
   /* ---------- contenuto ---------- */
   var FLOW = [
     {i:["p031","p063","p118"]},
-    {f:"Sei il mio posto preferito."},
+    {f:"Sei il mio posto preferito.", img:"p242"},
     {i:["p140","v_gondola","p149","p150","v_neve","p155","p182","p504","p184","p188","p200","p202","p207"]},
     {m:"p029"},
-    {f:"Grazie di esistere proprio adesso."},
-    {i:["p012","p045","p015","p492","p216","p218","p219","p051","p033","p223","p122","p130","p227","p237"]},
+    {f:"Grazie di esistere proprio adesso.", img:"p482"},
+    {i:["p012","p045","p015","p492","p216","p218","p219","p051","p223","p122","p130","p227","p237"]},
     {i:["p065","p066","p052","p080","p094","p248","p253","p259","p269","p270"]},
     {m:"p291"},
     {i:["p311","p110","p314","p335","p119","p056","p356","p367","p402","p400","p383","p397","p498","p011"]},
     {m:"p404"},
-    {f:"Le cose normali con te diventano le mie preferite."},
+    {f:"Le cose normali con te diventano le mie preferite.", img:"p497"},
     {i:["p008","p041","p046","p007","p034","p003","p413","p002","p428","p455","p036","p466","p471","v_cabana","p477","p480","p009","n02","n03","n09","n21","n24","n10","n19","n15","n30"]},
-    {m:"p497"}
+    {m:"p033"}
   ];
 
   var main = document.getElementById('book');
@@ -238,13 +263,14 @@
   function cella(name){
     var d = document.createElement('div');
     /* quasi tutti cuori, una stellina ogni tanto; i video sempre a cuore */
-    var forma = (nCella % 5 === 3 && name.indexOf('v_') !== 0) ? 'stella' : 'cuore';
+    var forma = (nCella % 5 === 3 && name.indexOf('v_') !== 0 && name !== 'p155') ? 'stella' : 'cuore';
     nCella++;
     d.className = 'cella ' + forma;
     if(name.indexOf('v_') === 0){
       d.innerHTML = '<div class="maschera"><video src="'+name+'.mp4" poster="'+name+'_poster.jpg" muted loop playsinline preload="metadata"></video></div>';
     } else {
-      d.innerHTML = '<div class="maschera"><img src="'+name+'.jpg" alt="" loading="lazy"></div>';
+      var POS = {p155:'30% 80%'};
+      d.innerHTML = '<div class="maschera"><img src="'+name+'.jpg" alt="" loading="lazy"'+(POS[name]?' style="object-position:'+POS[name]+'"':'')+'></div>';
     }
     var pop = document.createElement('span');
     pop.className = 'cuore-pop'; pop.textContent = '❤️';
@@ -254,9 +280,13 @@
 
   FLOW.forEach(function(b){
     if(b.f){
-      var fr = document.createElement('p');
+      var fr = document.createElement('div');
       fr.className = 'frase';
-      fr.textContent = b.f;
+      fr.innerHTML = '<div class="giro">'
+        + '<div class="faccia"><img src="'+b.img+'.jpg" alt="" loading="lazy"><div class="velo-f"></div><span class="clicca">clicca ❤️</span></div>'
+        + '<div class="faccia retro"><p>'+b.f+'</p></div>'
+        + '</div>';
+      fr.addEventListener('click', function(){ this.classList.toggle('aperta'); });
       frag.appendChild(fr);
       return;
     }
