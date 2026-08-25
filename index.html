@@ -75,8 +75,11 @@
     font-size:clamp(1.5rem,3.4vw,2.2rem);color:var(--rosa);white-space:nowrap}
   .anno small{font-size:1rem;transform:translateY(2px)}
 
-  .griglia{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.8rem,1.6vw,1.3rem)}
-  @media(max-width:860px){.griglia{grid-template-columns:repeat(2,1fr)}}
+  /* griglia a flex centrata: le righe incomplete restano centrate, niente buchi */
+  .griglia{--g:clamp(.8rem,1.6vw,1.3rem);
+    display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:var(--g)}
+  .cella{flex:0 0 calc((100% - var(--g)*2)/3)}
+  @media(max-width:860px){.cella{flex:0 0 calc((100% - var(--g))/2)}}
   .cella{position:relative;aspect-ratio:1;cursor:pointer;
     filter:drop-shadow(0 14px 22px rgba(46,33,38,.22));
     opacity:0;transform:translateY(34px) scale(.92);
@@ -224,7 +227,6 @@
   <div class="cornice"><img src="p503.jpg" alt="" loading="lazy"></div>
   <h2>ti amo</h2>
   <p class="cuoricini">❤️ 🤍 ❤️</p>
-  <p class="ultima">Se dovessi rifare tutto da capo, rifarei tutte le stesse strade pur di ritrovarti.</p>
   <p class="chiusa">Con te ci rifarei tutto. ❤️</p>
 </section>
 
@@ -246,8 +248,7 @@
     {i:["p140","v_gondola","p149","p150","v_neve","p155","p182","p504","p184","p188","p200","p202","p207"]},
     {m:"p029"},
     {f:"Grazie di esistere proprio adesso.", img:"p482"},
-    {i:["p012","p045","p015","p492","p216","p218","p219","p051","p223","p122","p130","p227","p237"]},
-    {i:["p065","p066","p052","p080","p094","p248","p253","p259","p269","p270"]},
+    {i:["p012","p045","p015","p492","p216","p218","p219","p051","p223","p122","p130","p227","p237","p065","p066","p052","p080","p094","p248","p253","p259","p269","p270"]},
     {m:"p291"},
     {i:["p311","p110","p314","p335","p119","p056","p356","p367","p402","p400","p383","p397","p498","p011"]},
     {m:"p404"},
